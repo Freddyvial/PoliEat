@@ -6,6 +6,8 @@
 package vista;
 
 import java.awt.Image;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -94,6 +96,12 @@ public class frmGestionarMenus extends javax.swing.JFrame {
         lblMenu5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lblNumMenu.setText("NÚMERO DEL MENÚ:");
+
+        txtNumeroMenu.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNumeroMenuKeyPressed(evt);
+            }
+        });
 
         lblCantidadMenu.setText("CANTIDAD DE MENÚ:");
 
@@ -538,6 +546,22 @@ public class frmGestionarMenus extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_cbxMenu5ActionPerformed
+
+    private void txtNumeroMenuKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroMenuKeyPressed
+       txtNumeroMenu.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char caracter = e.getKeyChar();
+
+                // Verificar si la tecla pulsada no es un digito
+                if (((caracter < '0')
+                        || (caracter > '9'))
+                        && (caracter != '\b' /*corresponde a BACK_SPACE*/)) {
+                    e.consume();  // ignorar el evento de teclado
+                }
+            }
+        });
+    }//GEN-LAST:event_txtNumeroMenuKeyPressed
 
     /**
      * @param args the command line arguments
